@@ -1,5 +1,6 @@
 <?php
-include 'includes/db_connect.php';
+include '../includes/db_connect.php';
+include './encrypt.php';
 
 $username = $_POST["username"];
 $passwort = $_POST["password"];
@@ -10,10 +11,11 @@ if($password != $password2 OR $username == "" OR $password == "")
     echo "Eingabefehler. Bitte alle Felder korekt ausfüllen. <a href=\"eintragen.html\">Zurück</a>";
     exit;
     }
-$password = md5($password);
+$password = encryptPassword($username, $password);
 
 //Kontrolle ob USER bereits vorhanden
 $result = $db->query("SELECT id FROM user WHERE username LIKE '$username'");
+
 //Wieviel davon sind vorhanden?
 $menge = $result->num_rows;
 

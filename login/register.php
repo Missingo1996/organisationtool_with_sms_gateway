@@ -14,14 +14,14 @@ if($password != $password2 OR $username == "" OR $password == "")
 $password = encryptPassword($username, $password);
 
 //Kontrolle ob USER bereits vorhanden
-$result = $db->query("SELECT id FROM user WHERE username LIKE '$username'");
+$result = $db->query("SELECT id FROM teacher WHERE username LIKE '$username'");
 
 //Wieviel davon sind vorhanden?
 $menge = $result->num_rows;
 
 if($menge == 0)
     {
-	$register = "INSERT INTO user (username, password) VALUES ('$username', '$password')";
+	$register = "INSERT INTO teacher (username, password) VALUES ('$username', '$password')";
     $eintragen = $db->query($register);
 
     if($eintragen == true)

@@ -35,13 +35,13 @@ else{
 //Tabellen anlegen
 echo "<br /><br /><h3>Tabellen werden angelegt...</h3>";
 
-//USER-Tabelle
-$table_user = "CREATE TABLE IF NOT EXISTS user (id INT(8) NOT NULL AUTO_INCREMENT, username VARCHAR(50) DEFAULT NULL, password VARCHAR(512) DEFAULT NULL, permissions INT(3) DEFAULT NULL, firstname VARCHAR(50) DEFAULT NULL, lastname VARCHAR(50) DEFAULT NULL, mail VARCHAR(150) DEFAULT NULL, course VARCHAR(20) DEFAULT NULL, PRIMARY KEY(id))";
-if($db->query($table_user)){
-	echo "Tabelle: <b>user</b> wurde erfolgreich angelegt";
+//TEACHER-Tabelle
+$table_teacher = "CREATE TABLE IF NOT EXISTS teacher (id INT(8) NOT NULL AUTO_INCREMENT, username VARCHAR(50) DEFAULT NULL, password VARCHAR(512) DEFAULT NULL, permissions INT(3) DEFAULT NULL, firstname VARCHAR(50) DEFAULT NULL, lastname VARCHAR(50) DEFAULT NULL, mail VARCHAR(150) DEFAULT NULL, course VARCHAR(20) DEFAULT NULL, PRIMARY KEY(id))";
+if($db->query($table_teacher)){
+	echo "Tabelle: <b>teacher</b> wurde erfolgreich angelegt";
 }
 else{
-	echo "Tabelle: <b>user</b> konnte nicht angelegt werden";
+	echo "Tabelle: <b>teacher</b> konnte nicht angelegt werden";
 }
 
 //STUDENTS-Tabelle

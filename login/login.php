@@ -11,7 +11,7 @@ Passwort:<br>
 
 <input type=\"submit\" value=\"Abschicken\">
 </form>
-<p>Noch nicht registiert? <a href=\"./register.html\">Registrieren</a></p>";
+<p>Noch nicht registiert? <a href=\"./register.php\">Registrieren</a></p>";
 
 //Wenn nicht angemeldet
 if(!isset($_SESSION["username"]) && (!isset($_POST["username"]) || !isset($_POST["password"])))
@@ -24,7 +24,8 @@ if(!isset($_SESSION["username"]) && (!isset($_POST["username"]) || !isset($_POST
 if(isset($_SESSION["username"]))
 {
 	$url = $_SERVER['HTTP_HOST'];
-	header("Location: http://$url");
+	$uri   = rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/\\');
+	header("Location: http://$url$uri");
 	exit();
 }
 

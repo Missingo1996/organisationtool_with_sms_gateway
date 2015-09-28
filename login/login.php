@@ -46,7 +46,9 @@ else
 		//Login erfolgreich
 		$_SESSION["username"] = $username;
 		$url = $_SERVER['HTTP_HOST'];
-		header("Location: http://$url");
+		$uri   = rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/\\');
+		header("Location: http://$url$uri");
+		exit();
 	}
 	else
 	{

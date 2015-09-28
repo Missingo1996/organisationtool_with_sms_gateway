@@ -7,6 +7,7 @@ include_once 'db_config.php';
 // Verbindung überprüfen
 if (mysqli_connect_errno()) {
   printf("Verbindung zur Datenbank fehlgeschlagen: %s\n", mysqli_connect_error());
+  session_destroy();
   exit();
 }
 ?>

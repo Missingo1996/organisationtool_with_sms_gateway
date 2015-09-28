@@ -1,6 +1,6 @@
 <?php
-include '../includes/db_connect.php';
-include './encrypt.php';
+require_once '../includes/db_connect.php';
+require_once './encrypt.php';
 
 $username = $_POST["username"];
 $passwort = $_POST["password"];

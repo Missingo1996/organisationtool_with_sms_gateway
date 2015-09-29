@@ -5,7 +5,10 @@ $registerform = "
 <form action=\"#\" method=\"post\">
 
 Benutzername:<br />
-<input type=\"text\" size=\"24\" maxlength=\"50\" name=\"username\"><br /><br />
+<input type=\"text\" size=\"24\" maxlength=\"50\" name=\"username\"><br />
+
+E-Mail::<br />
+<input type=\"text\" size=\"24\" maxlength=\"50\" name=\"mail\"><br /><br />
 
 Vorname:<br />
 <input type=\"text\" size=\"24\" maxlength=\"50\" name=\"firstname\"><br />
@@ -25,9 +28,9 @@ Passwort wiederholen:<br />
 ";
 
 //Wenn nicht angemeldet
-if(!isset($_SESSION["username"]) && (!isset($_POST["username"]) || !isset($_POST["password"])))
+if(!isset($_SESSION["username"]) && (!isset($_POST["username"]) || !isset($_POST["password"]) || !isset($_POST["password2"]) || !isset($_POST["firstname"]) || !isset($_POST["lastname"]) || !isset($_POST["mail"])))
 {
-	echo $loginform;
+	echo $registerform;
 	exit();
 }
 

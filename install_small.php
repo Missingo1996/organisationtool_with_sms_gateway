@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["install"]))
-{
 //MySQL INSTALLIEREN
 include 'includes/db_config.php';
 include 'login/encrypt.php';
@@ -62,7 +60,7 @@ else{
 	echo "Tabelle: <b>course</b> konnte nicht angelegt werden<br />";
 }
 //Admin anlegen
-$user = "admin";
+$username = "admin";
 $password = "admin";
 $password = encryptPassword($username, $password);
 
@@ -72,7 +70,7 @@ $eintragen = $db->query($register);
 
 if($eintragen == true)
 {
-	echo "Benutzername : $username <br />";
+	echo "<br />Benutzername : $username <br />";
 	echo "Passwort: $password <br />";
 }
 $db->close();

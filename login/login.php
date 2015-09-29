@@ -3,11 +3,11 @@ session_start();
 
 $loginform = "
 <form action=\"#\" method=\"post\">
-Benutzername:<br>
-<input type=\"text\" size=\"24\" maxlength=\"50\" name=\"username\"><br><br>
+Benutzername:<br />
+<input type=\"text\" size=\"24\" maxlength=\"50\" name=\"username\"><br /><br />
 
-Passwort:<br>
-<input type=\"password\" size=\"24\" maxlength=\"50\" name=\"password\"><br>
+Passwort:<br />
+<input type=\"password\" size=\"24\" maxlength=\"50\" name=\"password\"><br />
 
 <input type=\"submit\" value=\"Abschicken\">
 </form>
@@ -25,8 +25,15 @@ if(isset($_SESSION["username"]))
 {
 	$url = $_SERVER['HTTP_HOST'];
 	$uri   = rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/\\');
-	header("Location: http://$url$uri");
+	header("Location: ../index.php");
 	exit();
+}
+
+//Bei fehlerhafter Formulareingabe
+if($_POST["username"] == "" || $_POST["password"] == "")
+{
+	echo $loginform;
+	echo "<p style=\"color: red\">Bitte Benutzername und Passwort eingeben.</p>";
 }
 
 //Anmelden
@@ -38,6 +45,8 @@ else
 	$username = $_POST["username"];
 	$password = encryptPassword($username, $_POST["password"]);
 	
+	
+	
 	$result = $db->query("SELECT username, password FROM teacher WHERE username LIKE '$username' LIMIT 1");
 	$row = $result->fetch_object();
 	
@@ -46,7 +55,7 @@ else
 		//Login erfolgreich
 		$_SESSION["username"] = $username;
 		$url = $_SERVER['HTTP_HOST'];
-		$uri   = rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/\\');
+		$uri = rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/\\');
 		header("Location: http://$url$uri");
 		exit();
 	}

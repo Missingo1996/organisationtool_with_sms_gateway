@@ -1,40 +1,34 @@
 <?php
-require_once '../includes/db_connect.php';
-require_once './encrypt.php';
+session_start();
 
-$username = $_POST["username"];
-$passwort = $_POST["password"];
-$passwort2 = $_POST["password2"];
+$registerform = "
+<form action=\"#\" method=\"post\">
 
-if($password != $password2 OR $username == "" OR $password == "")
-    {
-    echo "Eingabefehler. Bitte alle Felder korekt ausfüllen. <a href=\"eintragen.html\">Zurück</a>";
-    exit;
-    }
-$password = encryptPassword($username, $password);
+Benutzername:<br />
+<input type=\"text\" size=\"24\" maxlength=\"50\" name=\"username\"><br /><br />
 
-//Kontrolle ob USER bereits vorhanden
-$result = $db->query("SELECT id FROM teacher WHERE username LIKE '$username'");
+Vorname:<br />
+<input type=\"text\" size=\"24\" maxlength=\"50\" name=\"firstname\"><br />
 
-//Wieviel davon sind vorhanden?
-$menge = $result->num_rows;
+Nachname:<br />
+<input type=\"text\" size=\"24\" maxlength=\"50\" name=\"lastname\"><br /><br />
 
-if($menge == 0)
-    {
-	$register = "INSERT INTO teacher (username, password) VALUES ('$username', '$password')";
-    $eintragen = $db->query($register);
 
-    if($eintragen == true)
-        {
-        echo "Sie haben sich erfolgreich registriert. Ihr Benutzername lautet <b>$username</b><a href=\"login.html\">Login</a>";
-        }
-    else
-        {
-        echo "Fehler beim Speichern des Benutzernames. <a href=\"register.html\">Zurück</a>";
-        }
-    }
-else
-    {
-    echo "Benutzername schon vorhanden. <a href=\"register.html\">Zurück</a>";
-    }
+Passwort:<br />
+<input type=\"password\" size=\"24\" maxlength=\"50\" name=\"password\"><br />
+
+Passwort wiederholen:<br />
+<input type=\"password\" size=\"24\" maxlength=\"50\" name=\"password2\"><br />
+
+<input type=\"submit\" value=\"Abschicken\">
+</form>
+";
+
+//Wenn nicht angemeldet
+if(!isset($_SESSION["username"]) && (!isset($_POST["username"]) || !isset($_POST["password"])))
+{
+	echo $loginform;
+	exit();
+}
+
 ?>

@@ -5,10 +5,7 @@ $logout = session_destroy();
 
 //Weiterleitung auf Login
 if($logout){
-	$url = $_SERVER['HTTP_HOST'];
-	$uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-	$target = "login.php";
-	header("Location: http://$url$uri/$target");
+	header("Location: ./login.php");
 	exit();
 }
 else

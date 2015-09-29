@@ -4,13 +4,10 @@ session_start();
 if(!isset($_SESSION["username"]))
 {
 	//Wenn nicht eingeloggt, Login anzeigen
-	$url = $_SERVER['HTTP_HOST'];
-	$uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-	$target = "login/login.php";
-	header("Location: http://$url$uri/$target");
+	header("Location: ./login/login.php");
 }
 else{
-	//Startseite des Users anzeigen
+	//Wenn eingeloggt, Startseite des Users anzeigen
 	echo "Sie sind eingeloggt";
 }
 ?>
